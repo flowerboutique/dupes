@@ -63,7 +63,7 @@ make sure you don't see errors!!
 test sqlite3:
 - chroot /jail/glftpd /bin/sqlite3
 
-exit with .quit
+exit with ".quit"
 
 # Clone this project
 - mkdir -p /jail/glftpd/db/mediainfo && mkdir -p /jail/glftpd/db/tmp && cd /jail/glftpd/db
