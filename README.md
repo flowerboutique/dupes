@@ -50,7 +50,9 @@ make sure you don't see errors!!
 
 ## mediainfo(-rar) dependencies
 - mkdir -p /jail/glftpd/usr/lib/x86_64-linux-gnu/
-- cp -P /usr/lib/x86_64-linux-gnu/libmediainfo* /jail/glftpd/usr/lib/x86_64-linux-gnu/ (sorry about all the following dependencies. Please, someone explain to me why these are needed?)
+- cp -P /usr/lib/x86_64-linux-gnu/libmediainfo* /jail/glftpd/usr/lib/x86_64-linux-gnu/ 
+
+(sorry about all the following dependencies. Please, can someone explain to me why these are needed?)
 - cd /usr/lib/x86_64-linux-gnu/
 - cp -P libzen.so* libcurl-gnutls.so* libmms.so* libtinyxml2.so* libnghttp2.so* libidn2.so* librtmp.so* libssh.so* libpsl.so* libnettle.so* libgnutls.so* libgssapi_krb5.so* libldap_r-2.4.so* liblber-2.4.so* libbrotlidec.so* /jail/glftpd/usr/lib/x86_64-linux-gnu/
 - cp -P libhogweed.so* libp11-kit.so* libunistring.so* libtasn1.so* libgmp.so* libkrb5.so* libk5crypto.so* libcom_err.so* libkrb5support.so* libresolv.so* libsasl2.so* libgssapi.so* libbrotlicommon.so* /jail/glftpd/usr/lib/x86_64-linux-gnu/
