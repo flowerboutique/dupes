@@ -67,7 +67,8 @@ exit with .quit
 
 # Clone this project
 - mkdir -p /jail/glftpd/db/mediainfo && mkdir -p /jail/glftpd/db/tmp && cd /jail/glftpd/db
-- git clone this project to this dir edit conf files
+- git clone this project to this dir
+- edit conf files
 
 # Run
 Run chrooted:
