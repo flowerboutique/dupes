@@ -146,7 +146,7 @@ proc_searchfordupes_with_pixels "080_720"  # <-- and 720
 #proc_searchfordupes   # <-- you can also comment 2160,1080,720 and only run this one to keep the best quality
 proc_delete_dead_symlink
 ```
-Once everything is as you've expected, change the config one last time:
+Once everything is as you've expected, change the config one last time to go into destructive mode :)
 ```
 #proc_create_database
 proc_remove_non_existent
@@ -166,3 +166,43 @@ proc_delete_dead_symlink
 # Run chrooted:
 - chroot /jail/glftpd /db/moviedupes.sh
 - chroot /jail/glftpd /db/tvdupes.sh
+
+
+# More explanation
+The basics are simple. Strip every release of it's properties. Releases have very specific "tagging".
+```
+<movie name>(<proper|repack|rerip|etc>)(<dynamic range>)<pixels><source><codec>-<group>
+or
+<serie name><season><episode>(<proper|repack|rerip|etc>)<pixels><source><codec>-<group>
+```
+And additional data, like video bitrate for example, can be extracted with external utilities.  
+Next is placing the values in a database so it can easilly comparted/ordered by. Remember: HIGHER values are WORSE (except for video bitrate, but that one goes automatically).  
+source:  
+"009_uhd"  
+"010_bluray"  
+"011_hddvd"  
+"020_web-dl"  
+"040_webrip"  
+"030_web"  
+"090_hdtv"  
+"999_unknown"  
+  
+resolution:  
+"060_2160"  
+"070_1080"  
+"080_720"  
+  
+codec:  
+"040_h265"  
+"045_x265"  
+"050_h264"  
+"055_x264"  
+"999_unknown"  
+  
+dynamic range:  
+"040_hdr"  
+"045_hdr10plus"  
+"110_dolbyvision"  <-- doesn't seem to get a lot of support, hence rated worse than sdr  
+"100_sdr"  
+  
+Easy, right?
