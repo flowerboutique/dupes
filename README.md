@@ -26,7 +26,16 @@ DEL: /tv-us/The.Whitch.S02E01.1080p.WEB.H264-TOOBAD (2021-12-17 09:11:40) | KEEP
 If nothing else is different (even up to videobitrate), the only difference that was found is the fact that -QUICK was created earlier on harddisk  
 
 
-The initial installation seems like a lot of work, but it's just to get all the dependencies in the right place. The rest is easy.
+Another example when using the "best of all" mode, in case all sections are scanned for the same movie and only the best (2160p, UHD, HDR, H265) is kept:
+```
+DEL: /movies/Super.Movie.1080p.BluRay.x264-SHINYDISC (1080|bluray|sdr|x264|v:8966kb/s) | KEEP: /movies/Super.Movie.HDR.2160p.UHD.WEB.h265-UHDWEBZ (2160|uhd|hdr|h265|v:8056kb/s)
+DEL: /movies/Super.Movie.1080p.WEB.H264-WEBGRP (1080|web|sdr|h264|v:7812kb/s) | KEEP: /movies/Super.Movie.HDR.2160p.UHD.WEB.h265-UHDWEBZ (2160|uhd|hdr|h265|v:8056kb/s)
+DEL: /movies/Super.Movie.1080p.WEBRip.x264-WEBRIPZZ (1080|webrip|sdr|x264|v:6221kb/s) | KEEP: /movies/Super.Movie.HDR.2160p.UHD.WEB.h265-UHDWEBZ (2160|uhd|hdr|h265|v:8056kb/s)
+DEL: /movies/Super.Movie.720p.WEB.H264-LOWQUALI (720|web|sdr|h264|v:4523kb/s) | KEEP: /movies/Super.Movie.HDR.2160p.UHD.WEB.h265-UHDWEBZ (2160|uhd|hdr|h265|v:8056kb/s)
+```
+
+Enjoy!
+
 
 ## Requirements
 - (chrooted) folder structure like /site/movies/, /site/movie-1080/, /site/movie-2160/, /site/tv-720/, /site/tv-uk-720/, /site/tv-uk-1080/, called sections
@@ -39,7 +48,9 @@ Tested on: Ubuntu 20.04.3 LTS (focal)
 Also known to be working on: Debian 10 (buster)
 
 ## Prerequisites
-apt install libmediainfo-dev git build-essential sqlite3
+apt install libmediainfo-dev git build-essential sqlite3 bc  
+cp /bin/expr /bin/rev /bin/stat /bin/bc /jail/glftpd/bin/  
+
 
 # Installation:
 ## Mediainfo
