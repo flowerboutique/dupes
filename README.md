@@ -85,6 +85,7 @@ proc_searchfordupes_with_pixels "070_1080" "FORCE"
 #proc_searchfordupes_with_pixels "070_1080"
 #proc_searchfordupes_with_pixels "080_720" "FORCE"
 #proc_searchfordupes_with_pixels "080_720"
+#proc_searchfordupes "FORCE" "FORCE"
 #proc_searchfordupes  # <- global, without the restriction of pixels. Best quality wins.
 proc_delete_dead_symlink
 ```
@@ -111,6 +112,8 @@ Same as the function _with_pixels, but this one will look for the best release i
 Turns out that cleaning dead symlinks is very usefull.
 
 # Run
+The bottom of the .sh files call the functions in a specific order. You can play around with it.
+
 The initial run should probably have the following function calls:
 ```
 proc_create_database
@@ -160,11 +163,6 @@ proc_searchfordupes_with_pixels "080_720" "FORCE"
 proc_delete_dead_symlink
 ```
 
-
-
-
-
-
-Run chrooted:
+# Run chrooted:
 - chroot /jail/glftpd /db/moviedupes.sh
 - chroot /jail/glftpd /db/tvdupes.sh
