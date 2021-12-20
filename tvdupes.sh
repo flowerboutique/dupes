@@ -449,6 +449,4 @@ proc_insertintodatabase
 proc_searchfordupes FORCE FORCE
 proc_delete_dead_symlink
 
-#proc_searchfordupes  # <- global, without the restriction of pixels. Best quality wins.
-
 
