@@ -1,4 +1,4 @@
-# dupes - a very special usecase for a friend, in bash
+# Dupes - a very special usecase for a friend, in bash
 Stores properties of (rarred) movies and series into a sqlite3 database. Then removes duplicates based on their properties, e.g. used codec, videobitrate, dynamic range formats, tags, etc. Can perform deduplication within the same ammount of pixels (e.g. best of 720, best of 1080, best of 2160) or keep the best of all. The initial installation seems like a lot of work, but it's just to get all the dependencies in the right place.
 
 ## Requirements
