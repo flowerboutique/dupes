@@ -117,7 +117,7 @@ The bottom of the .sh files call the functions in a specific order. You can play
 The initial run should probably have the following function calls:
 ```
 proc_create_database
-#proc_remove_non_existent  # <-- has no use, sinice there is no content yet
+#proc_remove_non_existent  # <-- has no use duriing this first run, since there is no content yet
 proc_makelist
 proc_insertintodatabase
 #proc_searchfordupes_with_pixels "060_2160" "FORCE"
