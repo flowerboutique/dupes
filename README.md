@@ -169,7 +169,7 @@ proc_delete_dead_symlink
 
 
 # More explanation
-The basics are simple. Strip every release of it's properties. Releases have very specific "tagging".
+The basics are simple. Strip every release of it's properties. Lucky for us, these people are very specific about their "tagging" which makes it easy to extract the fields.
 ```
 <movie name>(<proper|repack|rerip|etc>)(<dynamic range>)<pixels><source><codec>-<group>
 or
@@ -205,4 +205,32 @@ dynamic range:
 "110_dolbyvision"  <-- doesn't seem to get a lot of support, hence rated worse than sdr  
 "100_sdr"  
   
+downvote:  
+"100_ok_group"  <-- 100 is the default  
+"090_super_group" <-- but you can "upvote" groups you really like  
+"110_lame_group"  <-- or "downvote" if every release is basically crap  
+
+specialtags:  
+"12_rerip"  
+"07_proper_real_rerip"  
+"08_repack_proper"  
+"09_proper_repack"  
+"10_real_repack"  
+"11_repack"  
+"09_real_proper"  
+"10_proper"  
+"09_real"  
+"90_no_tags"  
+
+If all the properties are the same, then it will look for the date it was created on the harddrive.
+
+The real choice is made with the 'order by' statement in the searchfordupes functions.  
+Here is the default:
+```
+order by pixels,source,codec,dynamicrange,downvote,specialtag,videobitrate DESC,created,internal
+```
+You can play around with it, e.g. if you always want the highest videobitreate to win, dispite the source for example.  
+
+
+
 Easy, right?
