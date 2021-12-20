@@ -445,6 +445,7 @@ proc_searchfordupes_with_pixels "070_1080" "FORCE"
 #proc_searchfordupes_with_pixels "070_1080"
 #proc_searchfordupes_with_pixels "080_720" "FORCE"
 #proc_searchfordupes_with_pixels "080_720"
+#proc_searchfordupes "FORCE" "FORCE"
 #proc_searchfordupes  # <- global, without the restriction of pixels. Best quality wins.
 proc_delete_dead_symlink
 

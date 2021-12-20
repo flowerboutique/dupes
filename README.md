@@ -144,6 +144,7 @@ proc_searchfordupes_with_pixels "080_720"  # <-- and 720
 proc_delete_dead_symlink
 ```
 Once everything is as you've expected, change the config one last time:
+```
 #proc_create_database
 proc_remove_non_existent
 proc_makelist

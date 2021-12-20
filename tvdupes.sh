@@ -445,8 +445,8 @@ proc_insertintodatabase
 #proc_searchfordupes_with_pixels "070_1080"
 #proc_searchfordupes_with_pixels "080_720" "FORCE"
 #proc_searchfordupes_with_pixels "080_720"
+proc_searchfordupes "FORCE" "FORCE"
 #proc_searchfordupes
-proc_searchfordupes FORCE FORCE
 proc_delete_dead_symlink
 
 
