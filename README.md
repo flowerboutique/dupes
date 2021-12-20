@@ -4,16 +4,26 @@ Then removes duplicates based on their properties, e.g. used codec, videobitrate
 Can perform deduplication within the same amount of pixels (e.g. best of 720, best of 1080, best of 2160) or keep the best of all.  
 
 Sample output with explanation: 
+```
 DEL: /movies/Unreal.Tournament.2021.2160p.WEB.H265-SURK (sdr|v:11550kb/s) | KEEP: /x265-2160p/Unreal.Tournament.2021.HDR.2160p.WEB.H265-BLUR (hdr|v:13622kb/s)  
+```
 HDR wins from SDR  
+```
 DEL: /web-dl/Cry.Me.A.River.2021.1080p.WEB.H264-NICE (web|h264|v:8056kb/s) | KEEP: /x264/Cry.Me.A.River.2021.1080p.BluRay.x264-BURN (bluray|x264|v:12855kb/s)  
+```
 A better source was found in a different directory (bluray vs web). Bitrate is higher. Codec isn't but in this configuration output is ordered by source, then codec, then ... More info below  
+```
 DEL: /tv-us/My.Blood.S01E07.1080p.WEB.H264-PULSATE (v:5018kb/s|no_tags) | KEEP: /tv-us/My.Blood.S01E07.PROPER.1080p.WEB.H264-COOKING (v:4870kb/s|proper)  
+```
 A proper version is found. Bitrate is lower, but these tags weigh higher  
+```
 DEL: /tv-us/1986.S01E01.1080p.WEB.H264-TOOQUICK (no_tags) | KEEP: /tv-us/1986.S01E01.REPACK.1080p.WEB.H264-TOOQUICK (repack)  
+```
 Seems like no other differences are found (e.g. bitrate, codec), it's just the tag REPACK that makes it the winner  
+```
 DEL: /tv-us/The.Whitch.S02E01.1080p.WEB.H264-TOOBAD (2021-12-17 09:11:40) | KEEP: /tv-us/The.Whitch.S02E01.1080p.WEB.H264-QUICK (2021-12-17 09:04:13)  
-Both releases are identical, even up to videobitrate. The only difference that was found is the fact dat -QUICK was created earlier  
+```
+If nothing else is different (even up to videobitrate), the only difference that was found is the fact that -QUICK was created earlier on harddisk  
 
 
 The initial installation seems like a lot of work, but it's just to get all the dependencies in the right place. The rest is easy.
