@@ -69,7 +69,7 @@ exit with ".quit"
 
 # Clone this project
 - mkdir -p /jail/glftpd/db/mediainfo && mkdir -p /jail/glftpd/db/tmp && cd /jail/glftpd/db
-- git clone this project to this dir
+- git clone https://github.com/flowerboutique/dupes.git
 - edit conf files
 
 # Run
