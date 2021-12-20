@@ -70,9 +70,100 @@ exit with ".quit"
 # Clone this project
 - mkdir -p /jail/glftpd/db/mediainfo && mkdir -p /jail/glftpd/db/tmp && cd /jail/glftpd/db
 - git clone https://github.com/flowerboutique/dupes.git
-- edit conf files
+- edit conf files. Explanation is in the files.
+
+## Set up the functions
+Open moviedupes.sh. At the bottom, you see the functions beging called in the following order:
+```
+#proc_create_database
+proc_remove_non_existent
+proc_makelist
+proc_insertintodatabase
+proc_searchfordupes_with_pixels "060_2160" "FORCE"
+#proc_searchfordupes_with_pixels "060_2160"
+proc_searchfordupes_with_pixels "070_1080" "FORCE"
+#proc_searchfordupes_with_pixels "070_1080"
+#proc_searchfordupes_with_pixels "080_720" "FORCE"
+#proc_searchfordupes_with_pixels "080_720"
+#proc_searchfordupes  # <- global, without the restriction of pixels. Best quality wins.
+proc_delete_dead_symlink
+```
+Here's the explanation:
+### proc_create_database 
+Creates an empty sqlite3 database. Hence it is commented out. You should only uncomment it at the first run or when you want to create a totally clean situation.
+
+### proc_remove_non_existent
+Once the database is filled, the next time the script runs, it cleans out no (longer) existing directories.
+
+### proc_makelist
+Scans the sections from the .conf file and creates the temporary list.
+
+### proc_insertintodatabase
+Parses the temporary list, checks if all the directories are present in the database. If not, it appends with all relevant data.
+
+### proc_searchfordupes_with_pixels
+Here's where all the magic happens. First parameter is the code for the resolution. If the second parameter is FORCE then it will delete stuff.
+
+### proc_searchfordupes
+Same as the function _with_pixels, but this one will look for the best release in all the sections/resolutions. Use "FORCE" "FORCE" if you really want to delete directories, since it requires two parameters (lazy).
+
+### proc_delete_dead_symlink
+Turns out that cleaning dead symlinks is very usefull.
 
 # Run
+The initial run should probably have the following function calls:
+```
+proc_create_database
+#proc_remove_non_existent  # <-- has no use, sinice there is no content yet
+proc_makelist
+proc_insertintodatabase
+#proc_searchfordupes_with_pixels "060_2160" "FORCE"
+#proc_searchfordupes_with_pixels "060_2160"
+#proc_searchfordupes_with_pixels "070_1080" "FORCE"
+#proc_searchfordupes_with_pixels "070_1080"
+#proc_searchfordupes_with_pixels "080_720" "FORCE"
+#proc_searchfordupes_with_pixels "080_720"
+#proc_searchfordupes "FORCE" "FORCE"
+#proc_searchfordupes
+proc_delete_dead_symlink  # <-- why not
+```
+Next run:
+```
+#proc_create_database  # <-- if you enable this one, it will wipe the database
+proc_remove_non_existent  # <-- nothing has been deleted yet, so probably will do nothing at a second run
+proc_makelist
+proc_insertintodatabase
+#proc_searchfordupes_with_pixels "060_2160" "FORCE"
+proc_searchfordupes_with_pixels "060_2160"  # <-- look for best releases with 2160 pixels in common
+#proc_searchfordupes_with_pixels "070_1080" "FORCE"
+proc_searchfordupes_with_pixels "070_1080"  # <-- and 1080
+#proc_searchfordupes_with_pixels "080_720" "FORCE"
+proc_searchfordupes_with_pixels "080_720"  # <-- and 720
+#proc_searchfordupes "FORCE" "FORCE"
+#proc_searchfordupes   # <-- you can also comment 2160,1080,720 and only run this one to keep the best quality
+proc_delete_dead_symlink
+```
+Once everything is as you've expected, change the config one last time:
+#proc_create_database
+proc_remove_non_existent
+proc_makelist
+proc_insertintodatabase
+proc_searchfordupes_with_pixels "060_2160" "FORCE"
+#proc_searchfordupes_with_pixels "060_2160"
+proc_searchfordupes_with_pixels "070_1080" "FORCE"
+#proc_searchfordupes_with_pixels "070_1080"
+proc_searchfordupes_with_pixels "080_720" "FORCE"
+#proc_searchfordupes_with_pixels "080_720"
+#proc_searchfordupes "FORCE" "FORCE"  # <-- or this
+#proc_searchfordupes
+proc_delete_dead_symlink
+```
+
+
+
+
+
+
 Run chrooted:
 - chroot /jail/glftpd /db/moviedupes.sh
 - chroot /jail/glftpd /db/tvdupes.sh
