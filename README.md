@@ -1,5 +1,8 @@
 # Dupes - a very special usecase for a friend, in bash
-Stores properties of (rarred) movies and series into a sqlite3 database. Then removes duplicates based on their properties, e.g. used codec, videobitrate, dynamic range formats, tags, etc. Can perform deduplication within the same ammount of pixels (e.g. best of 720, best of 1080, best of 2160) or keep the best of all. The initial installation seems like a lot of work, but it's just to get all the dependencies in the right place.
+Stores properties of (rarred) movies and series into a sqlite3 database.  
+Then removes duplicates based on their properties, e.g. used codec, videobitrate, dynamic range formats, tags, etc.  
+Can perform deduplication within the same amount of pixels (e.g. best of 720, best of 1080, best of 2160) or keep the best of all.  
+The initial installation seems like a lot of work, but it's just to get all the dependencies in the right place.
 
 ## Requirements
 - (chrooted) folder structure like /site/movies/, /site/movie-1080/, /site/movie-2160/, /site/tv-720/, /site/tv-uk-720/, /site/tv-uk-1080/, called sections
@@ -117,7 +120,7 @@ The bottom of the .sh files call the functions in a specific order. You can play
 The initial run should probably have the following function calls:
 ```
 proc_create_database
-#proc_remove_non_existent  # <-- has no use duriing this first run, since there is no content yet
+#proc_remove_non_existent  # <-- has no use during this first run, since there is no content yet
 proc_makelist
 proc_insertintodatabase
 #proc_searchfordupes_with_pixels "060_2160" "FORCE"
