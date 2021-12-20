@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# needed: sqlite3
-
 # include the CHROOTED path to the .conf file
 source /db/tvdupes.conf
 
