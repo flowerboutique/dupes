@@ -278,7 +278,9 @@ IFS="
         FIRSTPART=`expr substr $i 1 $TILL | tr [[:upper:]] [[:lower:]] | rev | cut -d "/" -f 1 | rev`
         SEASON=`expr substr $i $POS 3 | tr [[:upper:]] [[:lower:]]`
         TILL=`expr $POS + 3`
-        EPISODE=`expr substr $i $TILL 3 | tr [[:upper:]] [[:lower:]]`
+# fix voor E101 in next 2 lines        EPISODE=`expr substr $i $TILL 3 | tr [[:upper:]] [[:lower:]]`
+        EPISODE=`expr substr $i $TILL 4 | tr [[:upper:]] [[:lower:]]`
+        EPISODE=`echo $EPISODE | cut -d"." -f1`
         echo "- $i"
         sqlite3 -cmd ".timeout 1000" $DBFILE "INSERT INTO tvdupes (fullpath,relgroup,seriebase,season,episode,part,specialtag,internal,downvote,codec,pixels,source,created,videobitrate,dynamicrange) \
                          values (\"$i\",\"$RELGROUP\",\"$FIRSTPART\",\"$SEASON\",\"$EPISODE\",\"$PART\",\"$SPECIALTAG\",\"$INTERNAL\",\"$DOWNVOTE\",\"$CODEC\",\"$PIXELS\",\"$SOURCE\",\"$MODIFY\",\"$VBR\",\"$DYNAMICRANGE\")"
