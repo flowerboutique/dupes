@@ -47,12 +47,37 @@ Tested on: Ubuntu 20.04.3 LTS (focal)
 
 Also known to be working on: Debian 10 (buster)
 
+# Installation (easy, without Mediainfo)
+## Prerequisites
+apt install git sqlite3 bc  
+cp /bin/expr /bin/rev /bin/stat /bin/bc /jail/glftpd/bin/  
+
+## sqlite3 to chroot:
+- cp /bin/sqlite3 /jail/glftpd/bin/
+- /jail/glftpd/libcopy.sh
+
+test sqlite3:
+- chroot /jail/glftpd /bin/sqlite3
+
+exit with ".quit"
+
+## Additional
+Proceed to: Clone this project  
+Edit the .sh files. Comment the following lines:
+```
+proc_get_mediainfo_for $i
+VBR=$(proc_get_video_bitrate_for $i)
+```
+And add this line below that:
+```
+VBR=0
+```
+
+# Installation (with Mediainfo, slightly more complex and with more dependencies)
 ## Prerequisites
 apt install libmediainfo-dev git build-essential sqlite3 bc  
 cp /bin/expr /bin/rev /bin/stat /bin/bc /jail/glftpd/bin/  
 
-
-# Installation:
 ## Mediainfo
 Get the latest source code from the mediaarea.net website (https://mediaarea.net/en/MediaInfo/Download/Source)
 - wget https://mediaarea.net/download/binary/mediainfo/21.09/MediaInfo_CLI_21.09_GNU_FromSource.tar.gz
