@@ -443,6 +443,8 @@ IFS="
 proc_remove_non_existent
 proc_makelist
 proc_insertintodatabase
+#proc_searchfordupes_with_pixels "060_2160" "FORCE"
+#proc_searchfordupes_with_pixels "060_2160"
 #proc_searchfordupes_with_pixels "070_1080" "FORCE"
 #proc_searchfordupes_with_pixels "070_1080"
 #proc_searchfordupes_with_pixels "080_720" "FORCE"
