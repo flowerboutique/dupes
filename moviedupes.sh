@@ -298,7 +298,7 @@ proc_searchfordupes_with_pixels() {
   RELS=`sqlite3 -cmd ".timeout 1000" $DBFILE "SELECT DISTINCT moviebase FROM moviedupes WHERE pixels='$SQLPIXELS'"`
   for REL in $RELS; do
     MOVIEBASE=`echo $REL | cut -d"|" -f1`
-    OLDERTHAN=`date "+%Y-%m-%d" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
+    OLDERTHAN=`date "+%Y-%m-%d %H:%M:%S" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
     MATCHES=`sqlite3 -cmd ".timeout 1000" -header $DBFILE "select fullpath,pixels,source,codec,downvote,specialtag,created,internal,videobitrate,dynamicrange from moviedupes \
                                       where pixels='$SQLPIXELS' and moviebase='$MOVIEBASE' and created <= '$OLDERTHAN' \
                                       order by pixels,source,codec,dynamicrange,downvote,specialtag,videobitrate DESC,created,internal"`
@@ -314,7 +314,7 @@ proc_searchfordupes() {
   RELS=`sqlite3 -cmd ".timeout 1000" $DBFILE "SELECT DISTINCT moviebase FROM moviedupes"`
   for REL in $RELS; do
     MOVIEBASE=`echo $REL | cut -d"|" -f1`
-    OLDERTHAN=`date "+%Y-%m-%d" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
+    OLDERTHAN=`date "+%Y-%m-%d %H:%M:%S" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
     MATCHES=`sqlite3 -cmd ".timeout 1000" -header $DBFILE "select fullpath,pixels,source,codec,downvote,specialtag,created,internal,videobitrate,dynamicrange from moviedupes \
                                       where moviebase='$MOVIEBASE' and created <= '$OLDERTHAN' \
                                       order by pixels,source,codec,dynamicrange,downvote,specialtag,videobitrate DESC,created,internal"`

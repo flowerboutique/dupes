@@ -302,7 +302,7 @@ proc_searchfordupes_with_pixels() {
     SEASON=`echo $REL | cut -d"|" -f2`
     EPISODE=`echo $REL | cut -d"|" -f3`
     PART=`echo $REL | cut -d"|" -f4`
-    OLDERTHAN=`date "+%Y-%m-%d" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
+    OLDERTHAN=`date "+%Y-%m-%d %H:%M:%S" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
     MATCHES=`sqlite3 -cmd ".timeout 1000" -header $DBFILE "select fullpath,pixels,source,codec,downvote,specialtag,created,internal,videobitrate,dynamicrange from tvdupes \
                                       where pixels='$SQLPIXELS' and seriebase='$SERIEBASE' and season='$SEASON' and episode='$EPISODE' and part='$PART' and created <= '$OLDERTHAN' \
                                       order by pixels,source,codec,dynamicrange,downvote,specialtag,videobitrate DESC,created,internal"`
@@ -322,7 +322,7 @@ proc_searchfordupes() {
     SEASON=`echo $REL | cut -d"|" -f2`
     EPISODE=`echo $REL | cut -d"|" -f3`
     PART=`echo $REL | cut -d"|" -f4`
-    OLDERTHAN=`date "+%Y-%m-%d" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
+    OLDERTHAN=`date "+%Y-%m-%d %H:%M:%S" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
     MATCHES=`sqlite3 -cmd ".timeout 1000" -header $DBFILE "select fullpath,pixels,source,codec,downvote,specialtag,created,internal,videobitrate,dynamicrange from tvdupes \
                                       where seriebase='$SERIEBASE' and season='$SEASON' and episode='$EPISODE' and part='$PART' and created <= '$OLDERTHAN' \
                                       order by pixels,source,codec,dynamicrange,downvote,specialtag,videobitrate DESC,created,internal"`
