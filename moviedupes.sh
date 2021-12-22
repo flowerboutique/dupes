@@ -298,8 +298,9 @@ proc_searchfordupes_with_pixels() {
   RELS=`sqlite3 -cmd ".timeout 1000" $DBFILE "SELECT DISTINCT moviebase FROM moviedupes WHERE pixels='$SQLPIXELS'"`
   for REL in $RELS; do
     MOVIEBASE=`echo $REL | cut -d"|" -f1`
+    OLDERTHAN=`date "+%Y-%m-%d" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
     MATCHES=`sqlite3 -cmd ".timeout 1000" -header $DBFILE "select fullpath,pixels,source,codec,downvote,specialtag,created,internal,videobitrate,dynamicrange from moviedupes \
-                                      where pixels='$SQLPIXELS' and moviebase='$MOVIEBASE' \
+                                      where pixels='$SQLPIXELS' and moviebase='$MOVIEBASE' and created <= '$OLDERTHAN' \
                                       order by pixels,source,codec,dynamicrange,downvote,specialtag,videobitrate DESC,created,internal"`
     NRMATCHES=`echo "$MATCHES" | wc -l`
     if [ $NRMATCHES -gt 2 ]; then
@@ -313,8 +314,9 @@ proc_searchfordupes() {
   RELS=`sqlite3 -cmd ".timeout 1000" $DBFILE "SELECT DISTINCT moviebase FROM moviedupes"`
   for REL in $RELS; do
     MOVIEBASE=`echo $REL | cut -d"|" -f1`
+    OLDERTHAN=`date "+%Y-%m-%d" -d "-$DONOTCLEANIFNEWERTHANDAYS days"`
     MATCHES=`sqlite3 -cmd ".timeout 1000" -header $DBFILE "select fullpath,pixels,source,codec,downvote,specialtag,created,internal,videobitrate,dynamicrange from moviedupes \
-                                      where moviebase='$MOVIEBASE' \
+                                      where moviebase='$MOVIEBASE' and created <= '$OLDERTHAN' \
                                       order by pixels,source,codec,dynamicrange,downvote,specialtag,videobitrate DESC,created,internal"`
     NRMATCHES=`echo "$MATCHES" | wc -l`
     if [ $NRMATCHES -gt 2 ]; then
@@ -442,10 +444,10 @@ IFS="
 proc_remove_non_existent
 proc_makelist
 proc_insertintodatabase
-proc_searchfordupes_with_pixels "060_2160" "FORCE"
-#proc_searchfordupes_with_pixels "060_2160"
-proc_searchfordupes_with_pixels "070_1080" "FORCE"
-#proc_searchfordupes_with_pixels "070_1080"
+#proc_searchfordupes_with_pixels "060_2160" "FORCE"
+proc_searchfordupes_with_pixels "060_2160"
+#proc_searchfordupes_with_pixels "070_1080" "FORCE"
+proc_searchfordupes_with_pixels "070_1080"
 #proc_searchfordupes_with_pixels "080_720" "FORCE"
 #proc_searchfordupes_with_pixels "080_720"
 #proc_searchfordupes "FORCE" "FORCE"
