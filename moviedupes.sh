@@ -120,6 +120,7 @@ proc_makelist() {
     | grep -vi ".imdbinfoname" \
     | grep -vi "extrafanart" \
     | grep -vi "\.FiX\-" \
+    | grep -vi "\.RARFIX\-" \
     | egrep -v $SKIPPATH \
     >> $OUTPUTFILE
   done
