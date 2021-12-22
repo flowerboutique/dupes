@@ -119,6 +119,7 @@ proc_makelist() {
     | grep -vi "\/score_" \
     | grep -vi ".imdbinfoname" \
     | grep -vi "extrafanart" \
+    | grep -vi "\.FiX\-" \
     | egrep -v $SKIPPATH \
     >> $OUTPUTFILE
   done
