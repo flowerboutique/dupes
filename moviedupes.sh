@@ -118,6 +118,7 @@ proc_makelist() {
     | grep -vi ".SUBPACK." \
     | grep -vi "\/score_" \
     | grep -vi ".imdbinfoname" \
+    | grep -vi "extrafanart" \
     | egrep -v $SKIPPATH \
     >> $OUTPUTFILE
   done

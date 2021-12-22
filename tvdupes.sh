@@ -114,6 +114,7 @@ proc_makelist() {
     | grep -vi ".NFOFIX." \
     | grep -vi ".DiRFiX." \
     | grep -vi ".SUBPACK." \
+    | grep -vi "extrafanart" \
     | egrep -v $SKIPPATH \
     >> $OUTPUTFILE
   done
