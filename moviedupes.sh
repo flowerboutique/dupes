@@ -221,7 +221,9 @@ IFS="
 #        echo "dbg - INTERNAL $INTERNAL"
 
         ######### TAGS
-        if [ `expr match "$i" '.*\.[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
+        if [ `expr match "$i" '.*\[Rr][Ee][Aa][Ll].[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
+          SPECIALTAG="11_real_rerip"
+        elif [ `expr match "$i" '.*\.[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
           SPECIALTAG="12_rerip"
         elif [ `expr match "$i" '.*\.[Pp][Rr][Oo][Pp][Ee][Rr]\.[Rr][Ee][Aa][Ll]\.[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
           SPECIALTAG="07_proper_real_rerip"
@@ -444,10 +446,10 @@ IFS="
 proc_remove_non_existent
 proc_makelist
 proc_insertintodatabase
-#proc_searchfordupes_with_pixels "060_2160" "FORCE"
-proc_searchfordupes_with_pixels "060_2160"
-#proc_searchfordupes_with_pixels "070_1080" "FORCE"
-proc_searchfordupes_with_pixels "070_1080"
+proc_searchfordupes_with_pixels "060_2160" "FORCE"
+#proc_searchfordupes_with_pixels "060_2160"
+proc_searchfordupes_with_pixels "070_1080" "FORCE"
+#proc_searchfordupes_with_pixels "070_1080"
 #proc_searchfordupes_with_pixels "080_720" "FORCE"
 #proc_searchfordupes_with_pixels "080_720"
 #proc_searchfordupes "FORCE" "FORCE"
