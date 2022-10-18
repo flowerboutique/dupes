@@ -223,7 +223,9 @@ IFS="
 #        echo "dbg - INTERNAL $INTERNAL"
 
         ######### TAGS
-        if [ `expr match "$i" '.*\.[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
+        if [ `expr match "$i" '.*\.[Rr][Ee][Aa][Ll].[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
+          SPECIALTAG="11_real_rerip"
+        elif [ `expr match "$i" '.*\.[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
           SPECIALTAG="12_rerip"
         elif [ `expr match "$i" '.*\.[Pp][Rr][Oo][Pp][Ee][Rr]\.[Rr][Ee][Aa][Ll]\.[Rr][Ee][Rr][Ii][Pp]\.*'` -gt 0 ]; then
           SPECIALTAG="07_proper_real_rerip"
